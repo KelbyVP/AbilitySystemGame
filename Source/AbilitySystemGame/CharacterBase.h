@@ -41,4 +41,18 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "CharacterBase")
 		void AcquireAbility(TSubclassOf<UGameplayAbility> AbilityToAcquire);
+
+	UFUNCTION()
+		void OnHealthChanged(float Health, float MaxHealth);
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "CharacterBase", meta = (DisplayName = "OnHealthChanged"))
+		void BP_OnHealthChanged(float Health, float MaxHealth);
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "CharacterBase", meta = (Display = "Die"))
+		void BP_Die();
+
+	protected:
+
+	bool bIsDead;
+
 };
