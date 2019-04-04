@@ -22,6 +22,8 @@ void ACharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
 	AttributeSetBaseComp->OnHealthChange.AddDynamic(this, &ACharacterBase::OnHealthChanged);
+	AttributeSetBaseComp->OnManaChange.AddDynamic(this, &ACharacterBase::OnManaChanged);
+	AttributeSetBaseComp->OnStrengthChange.AddDynamic(this, &ACharacterBase::OnStrengthChanged);
 	AutoDetermineTeamIDByControllerType();
 }
 
@@ -64,6 +66,16 @@ void ACharacterBase::OnHealthChanged(float Health, float MaxHealth)
 		BP_Die();
 	}
 	BP_OnHealthChanged(Health, MaxHealth);
+}
+
+void ACharacterBase::OnManaChanged(float Mana, float MaxMana)
+{
+	BP_OnManaChanged(Mana, MaxMana);
+}
+
+void ACharacterBase::OnStrengthChanged(float Strength, float MaxStrength)
+{
+	BP_OnStrengthChanged(Strength, MaxStrength);
 }
 
 
