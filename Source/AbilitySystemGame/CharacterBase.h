@@ -37,6 +37,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "CharacterBase")
 		UAttributeSetBase* AttributeSetBaseComp;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterBase")
+		FGameplayTag FullHealthTag;
+
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const;
 
 	UFUNCTION(BlueprintCallable, Category = "CharacterBase")
@@ -65,6 +68,12 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "CharacterBase")
 		bool IsOtherHostile(ACharacterBase* Other);
+
+	UFUNCTION(BlueprintCallable, Category = "CharacterBase")
+		void AddGameplayTag(FGameplayTag TagToAdd);
+
+	UFUNCTION(BlueprintCallable, Category = "CharacterBase")
+		void RemoveGameplayTag(FGameplayTag TagToRemove);
 
 	uint8 GetTeamID() const;
 
