@@ -75,13 +75,18 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "CharacterBase")
 		void RemoveGameplayTag(FGameplayTag TagToRemove);
 
+	UFUNCTION(BlueprintCallable, Category = "CharacterBase")
+		void HitStun(float StunDuration);
+
 	uint8 GetTeamID() const;
 
-	protected:
+protected:
 
 	bool bIsDead;
 	uint8 TeamID;
 	void AutoDetermineTeamIDByControllerType();
 	void OnDeath();
-
+	void DisableInputControl();
+	void EnableInputControl();
+	FTimerHandle StunTimeHandle;
 };

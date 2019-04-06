@@ -85,6 +85,12 @@ void ACharacterBase::RemoveGameplayTag(FGameplayTag TagToRemove)
 	GetAbilitySystemComponent()->RemoveLooseGameplayTag(TagToRemove);
 }
 
+void ACharacterBase::HitStun(float StunDuration)
+{
+	DisableInputControl();
+	GetWorldTimerManager().SetTimer(StunTimeHandle, this, &ACharacterBase::EnableInputControl, StunDuration, false);
+}
+
 uint8 ACharacterBase::GetTeamID() const
 {
 	return TeamID;
@@ -109,6 +115,37 @@ void ACharacterBase::OnDeath()
 	if (AIC)
 	{
 		AIC->GetBrainComponent()->StopLogic("Dead");
+	}
+}
+
+void ACharacterBase::DisableInputControl()
+{
+	APlayerController* PC = Cast<APlayerController>(GetController());
+	if (PC)
+	{
+		PC->DisableInput(PC);
+	}
+	AAIController* AIC = Cast<AAIController>(GetController());
+	if (AIC)
+	{
+		AIC->GetBrainComponent()->StopLogic("Dead");
+	}
+}
+
+void ACharacterBase::EnableInputControl()
+{
+	if (!bIsDead)
+	{
+	APlayerController* PC = Cast<APlayerController>(GetController());
+	if (PC)
+	{
+		PC->EnableInput(PC);
+	}
+	AAIController* AIC = Cast<AAIController>(GetController());
+	if (AIC)
+	{
+		AIC->GetBrainComponent()->RestartLogic();
+	}
 	}
 }
 
