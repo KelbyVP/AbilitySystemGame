@@ -5,6 +5,12 @@
 #include "GameFramework/Pawn.h"
 #include <GameFramework/PlayerController.h>
 #include "DrawDebugHelpers.h"
+#include "Math/Vector.h"
+
+AGATargetActorGroundSelect::AGATargetActorGroundSelect()
+{
+	PrimaryActorTick.bCanEverTick = true;
+}
 
 void AGATargetActorGroundSelect::StartTargeting(UGameplayAbility* Ability)
 {
@@ -63,7 +69,7 @@ void AGATargetActorGroundSelect::Tick(float DeltaSeconds)
 	Super::Tick(DeltaSeconds);
 	FVector LookingPoint;
 	GetPlayerLookingPoint(LookingPoint);
-	DrawDebugSphere(GetWorld(), LookingPoint, Radius, 32, FColor::Red, true, -1, 0, 5.0f);
+	DrawDebugSphere(GetWorld(), LookingPoint, Radius, 32, FColor::Red, false, -1.0f, 0, 5.0f);
 }
 
 bool AGATargetActorGroundSelect::GetPlayerLookingPoint(FVector& OutViewPoint)
