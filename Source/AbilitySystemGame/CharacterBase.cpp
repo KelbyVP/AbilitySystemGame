@@ -7,6 +7,8 @@
 #include "AIController.h"
 #include "PlayerControllerBase.h"
 #include "AbilityTypes.h"
+#include "GameFramework/Actor.h"
+#include "TimerManager.h"
 
 // Sets default values
 ACharacterBase::ACharacterBase()
