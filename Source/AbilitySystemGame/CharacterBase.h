@@ -84,6 +84,9 @@ public:
 
 	uint8 GetTeamID() const;
 
+	UFUNCTION(BlueprintCallable, Category = "CharacterBase")
+		void ApplyGameplayEffectSpecHandleToTargetDataHandleSpecHandle(const FGameplayEffectSpecHandle &GESpecHandle, const FGameplayAbilityTargetDataHandle &TargetDataHandle);
+
 protected:
 
 	bool bIsDead;

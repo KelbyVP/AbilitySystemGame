@@ -35,6 +35,10 @@ public:
 		FGameplayAttributeData Strength;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AttributeBase")
 		FGameplayAttributeData MaxStrength;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AttributeBase")
+		FGameplayAttributeData AttackDamage;	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AttributeBase")
+		FGameplayAttributeData Armor;
 
 	void PostGameplayEffectExecute(const struct FGameplayEffectModCallbackData &Data) override;
 

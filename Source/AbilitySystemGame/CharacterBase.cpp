@@ -9,6 +9,7 @@
 #include "AbilityTypes.h"
 #include "GameFramework/Actor.h"
 #include "TimerManager.h"
+#include <GameplayAbilityTargetTypes.h>
 
 // Sets default values
 ACharacterBase::ACharacterBase()
@@ -114,6 +115,14 @@ void ACharacterBase::HitStun(float StunDuration)
 uint8 ACharacterBase::GetTeamID() const
 {
 	return TeamID;
+}
+
+void ACharacterBase::ApplyGameplayEffectSpecHandleToTargetDataHandleSpecHandle(const FGameplayEffectSpecHandle &GESpecHandle, const FGameplayAbilityTargetDataHandle &TargetDataHandle)
+{
+	for (TSharedPtr<FGameplayAbilityTargetData> Data : TargetDataHandle.Data)
+	{
+		Data->ApplyGameplayEffectSpec(*GESpecHandle.Data.Get());
+	}
 }
 
 void ACharacterBase::AutoDetermineTeamIDByControllerType()
